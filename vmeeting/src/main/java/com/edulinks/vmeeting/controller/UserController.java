@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
+@RequestMapping(value="/api/user")
 @EnableAutoConfiguration
-public class HomeController {
+public class UserController {
 
     @RequestMapping(value="/", method=RequestMethod.GET)
     public String Index() {
         return "Welcome to vMeeting";
+    }
+    
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public boolean addUser() {
+        return true;
     }
     
 }
