@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @EnableAutoConfiguration
 public class UserController {
 
-    @RequestMapping(value="/", method=RequestMethod.GET)
-    public String Index() {
-        return "Welcome to vMeeting";
+    @RequestMapping(value="/api/user", method=RequestMethod.GET)
+    public String Index(@RequestParam(value = "userId", required = true) int userId) {
+        return "Welcome to vMeeting User Controller";
     }
     
-    @RequestMapping(value="/add", method=RequestMethod.POST)
+    @RequestMapping(value="/add", method=RequestMethod.GET)
     public boolean addUser() {
         return true;
     }

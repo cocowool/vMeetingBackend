@@ -13,7 +13,7 @@ public class HomeController {
 
     @RequestMapping(value="/", method=RequestMethod.GET)
     public String Index() {
-        return "Welcome to vMeeting";
+        return "Welcome to vMeeting Home Controller";
     }
     
 }
