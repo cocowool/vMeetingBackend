@@ -1,5 +1,6 @@
 package com.edulinks.vmeeting.controller;
 
+import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value="/api/user")
 @EnableAutoConfiguration
 public class UserController {
+    private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping(value="/api/user", method=RequestMethod.GET)
-    public String Index(@RequestParam(value = "userId", required = true) int userId) {
+    @RequestMapping(value="/", method=RequestMethod.GET)
+    public String User(@RequestParam(value = "userId", required = true) int userId) {
         return "Welcome to vMeeting User Controller";
     }
     

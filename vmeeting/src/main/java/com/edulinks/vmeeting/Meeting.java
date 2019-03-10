@@ -1,4 +1,4 @@
-package com.edulinks.vmeeting.bean;
+package com.edulinks.vmeeting;
 
 public class Meeting{
     private final long id;
