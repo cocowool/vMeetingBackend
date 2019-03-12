@@ -1,3 +1,11 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/spring
+    username: root
+    password: 123456
 server:
   port: 8080
   address: 127.0.0.1

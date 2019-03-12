@@ -1,30 +1,36 @@
 package com.edulinks.vmeeting.bean;
 
-// import javax.persistence.Entity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-// @Entity
+@Entity
 public class User {
-    private int id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+
+    private Integer id;
     private String name;
 
-    public User(int id, String name){
+    // public User(int id, String name){
+    //     this.id = id;
+    //     this.name = name;
+    // }
+
+    public Integer getId(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setId(int id){
         this.id = id;
-        this.name = name;
     }
 
-    public int getUserId(){
-        return this.id;
-    }
-
-    public String getUserName(){
-        return this.name;
-    }
-
-    public void setUserId(int id){
-        this.id = id;
-    }
-
-    public void setUserName(String name){
+    public void setName(String name){
         this.name = name;
     }
 }
