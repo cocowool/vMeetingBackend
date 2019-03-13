@@ -2,7 +2,7 @@ package com.edulinks.vmeeting.controller;
 
 import com.edulinks.vmeeting.bean.Meeting;
 import com.edulinks.vmeeting.bean.User;
-import com.edulinks.vmeeting.controller.UserRepository;
+import com.edulinks.vmeeting.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class MeetingController {
     @RequestMapping("/meeting")
     public Meeting meeting(@RequestParam(value="id", defaultValue="0", required=true) long id) {
         User n = new User();
-        n.setName("Wang");
+        n.setName("Zhang");
         userRepository.save(n);
 
         return new Meeting(counter.incrementAndGet(),

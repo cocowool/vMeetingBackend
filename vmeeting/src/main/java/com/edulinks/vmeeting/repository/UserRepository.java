@@ -1,4 +1,4 @@
-package com.edulinks.vmeeting.controller;
+package com.edulinks.vmeeting.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
