@@ -53,7 +53,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
+			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
@@ -74,4 +74,15 @@
 		</plugins>
 	</build>
 
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-releases</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- <pluginGroups>
+		<pluginGroup>org.springframework.boot</pluginGroup>  
+	</pluginGroups>	 -->
 </project>

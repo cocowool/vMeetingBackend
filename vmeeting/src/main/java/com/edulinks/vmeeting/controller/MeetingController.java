@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MeetingController {
-    @Autowired
 
     private static final String template = "Hello, %d!";
     private final AtomicLong counter = new AtomicLong();
 
+    @Autowired
     private UserRepository userRepository;
 
     @RequestMapping("/meeting")

@@ -2,8 +2,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+      # useSSL: false
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/spring
+    url: jdbc:mysql://127.0.0.1:3306/spring?useSSL=false
     username: root
     password: 123456
 server:
