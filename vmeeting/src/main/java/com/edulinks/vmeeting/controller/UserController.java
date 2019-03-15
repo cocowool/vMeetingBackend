@@ -31,4 +31,15 @@ public class UserController {
     public @ResponseBody Iterable<User> getAllUsers(){
         return userRepository.findAll();
     }
+
+    @RequestMapping("user/update")
+    public String updateUser(@RequestParam Integer id, @RequestParam String name){
+        User n = new User();
+        n.setId(id);
+        n.setName(name);
+
+        userRepository.save(n);
+
+        return "updated";
+    }
 }
