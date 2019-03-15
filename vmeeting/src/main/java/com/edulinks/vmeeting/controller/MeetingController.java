@@ -31,4 +31,9 @@ public class MeetingController {
         return new Meeting(counter.incrementAndGet(),
                             String.format(template, id));
     }
+
+    @RequestMapping("/meeting/list")
+    public @ResponseBody Iterable<User> getAllUsers(){
+        return userRepository.findAll();
+    }
 }
