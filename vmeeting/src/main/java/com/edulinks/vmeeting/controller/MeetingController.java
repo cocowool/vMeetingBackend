@@ -28,8 +28,7 @@ public class MeetingController {
         n.setName("Zhang");
         userRepository.save(n);
 
-        return new Meeting(counter.incrementAndGet(),
-                            String.format(template, id));
+        return new Meeting();
     }
 
     @RequestMapping("/meeting/list")
