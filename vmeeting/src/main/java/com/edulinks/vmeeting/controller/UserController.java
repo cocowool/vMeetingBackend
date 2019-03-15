@@ -1,27 +1,34 @@
 package com.edulinks.vmeeting.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.edulinks.vmeeting.bean.User;
+import com.edulinks.vmeeting.repository.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/api/user")
-@EnableAutoConfiguration
 public class UserController {
-    private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping(value="/user", method=RequestMethod.GET)
-    public String User(@RequestParam(value = "userId", required = true) int userId) {
-        return "Welcome to vMeeting User Controller";
+    @Autowired
+    private UserRepository userRepository;
+
+    @RequestMapping("/user/add")
+    public String addNewUser(@RequestParam String name ) {
+        User n = new User();
+        n.setName(name);
+        userRepository.save(n);
+
+        return "ok";
     }
-    
-    @RequestMapping(value="/add", method=RequestMethod.GET)
-    public boolean addUser() {
-        return true;
+
+    @RequestMapping("/user")
+    public @ResponseBody Iterable<User> getAllUsers(){
+        return userRepository.findAll();
     }
-    
 }

@@ -12,10 +12,11 @@ public class User {
 
     private Integer id;
     private String name;
+    private String email;
     private String mobile;
     private String username;
     private String password;
-    private Integer usertype;       //用户类型，0普通用户，1管理员
+    private Integer usertype; // 用户类型，0普通用户，1管理员
 
     // public User(int id, String name){
     // this.id = id;
@@ -24,6 +25,20 @@ public class User {
 
     public Integer getId() {
         return id;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
