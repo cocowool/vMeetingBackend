@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Meeting{
@@ -12,6 +13,9 @@ public class Meeting{
 
     private Integer id;
     private String name;
+    private Integer attendance;
+    private Date meetingtime;
+
 
     // public Meeting(long id, String name){
     //     this.id = id;
@@ -26,11 +30,19 @@ public class Meeting{
         return name;
     }
 
+    public Integer getAttendance(){
+        return attendance;
+    }
+
     public void setId(int id){
         this.id = id;
     }
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public void setAttendance(Integer attendance){
+        this.attendance = attendance;
     }
 }
