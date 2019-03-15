@@ -12,18 +12,48 @@ public class MeetingRoom{
 
     private Integer id;
     private String name;
-    private String location;
+    private String location;    //所在园区
+    private String floor;       // 所在楼层，房间号
+    private Integer size;       //会议室容量
 
     // public Meeting(long id, String name){
-    //     this.id = id;
-    //     this.name = name;
+    // this.id = id;
+    // this.name = name;
     // }
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
-    public String getName(){
+    /**
+     * @return the floor
+     */
+    public String getFloor() {
+        return floor;
+    }
+
+    /**
+     * @param floor the floor to set
+     */
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    /**
+     * @return the size
+     */
+    public Integer getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public String getName() {
         return name;
     }
 

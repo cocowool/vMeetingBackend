@@ -15,18 +15,76 @@ public class Meeting{
     private String name;
     private Integer attendance;
     private Date meetingtime;
-
+    private Integer booker;
+    private Date starttime;
+    private Date endtime;
 
     // public Meeting(long id, String name){
-    //     this.id = id;
-    //     this.name = name;
+    // this.id = id;
+    // this.name = name;
     // }
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
-    public String getName(){
+    /**
+     * @return the endtime
+     */
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    /**
+     * @param endtime the endtime to set
+     */
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
+    /**
+     * @return the starttime
+     */
+    public Date getStarttime() {
+        return starttime;
+    }
+
+    /**
+     * @param starttime the starttime to set
+     */
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
+
+    /**
+     * @return the booker
+     */
+    public Integer getBooker() {
+        return booker;
+    }
+
+    /**
+     * @param booker the booker to set
+     */
+    public void setBooker(Integer booker) {
+        this.booker = booker;
+    }
+
+    /**
+     * @return the meetingtime
+     */
+    public Date getMeetingtime() {
+        return meetingtime;
+    }
+
+    /**
+     * @param meetingtime the meetingtime to set
+     */
+    public void setMeetingtime(Date meetingtime) {
+        this.meetingtime = meetingtime;
+    }
+
+    public String getName() {
         return name;
     }
 
