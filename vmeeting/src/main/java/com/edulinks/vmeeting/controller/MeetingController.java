@@ -1,8 +1,8 @@
 package com.edulinks.vmeeting.controller;
 
 import com.edulinks.vmeeting.bean.Meeting;
-import com.edulinks.vmeeting.bean.User;
-import com.edulinks.vmeeting.repository.UserRepository;
+import com.edulinks.vmeeting.user.User;
+import com.edulinks.vmeeting.user.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
