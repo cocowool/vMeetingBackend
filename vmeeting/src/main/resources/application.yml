@@ -4,6 +4,7 @@ spring:
       # create\none
       ddl-auto: none  
       # useSSL: false
+    show-sql: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring?useSSL=false
     username: root
