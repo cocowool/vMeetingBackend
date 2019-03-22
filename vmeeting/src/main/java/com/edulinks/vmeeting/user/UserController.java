@@ -48,10 +48,13 @@ public class UserController {
 
     @RequestMapping(value="/user/delete/{id}", method=RequestMethod.GET)
     public String delete(@PathVariable("id") String id) {
-        userRepository.deleteById(Integer.parseInt(id));
-
-        return "deleted";
-        // return new SomeData();
+        //如果不判断，会发生 org.springframework.dao.EmptyResultDataAccessException 异常
+        if ( userRepository.existsById( Integer.parseInt(id) ) ){
+            userRepository.deleteById(Integer.parseInt(id));
+            return "deleted";
+        }else{
+            return "error";
+        }
     }
     
 }
