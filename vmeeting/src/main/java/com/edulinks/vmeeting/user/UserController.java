@@ -3,6 +3,10 @@ package com.edulinks.vmeeting.user;
 import com.edulinks.vmeeting.user.User;
 import com.edulinks.vmeeting.user.UserRepository;
 
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import java.util.concurrent.atomic.AtomicLong;
@@ -35,18 +39,19 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    // @GetMapping("/user/{id}")
-    // public @ResponseBody User getSingleUser(@PathVariable("id") Integer id){
-    //     // return userRepository.findById(id);
-    //     // Optional<User> user = userRepository.findById( id );
-    //     // if( !user.isPresent() ){
-    //     //     throw new UserNotFoundException("id-" + id);
-    //     // }
+    @GetMapping("/user/{id}")
+    public User getSingleUser(@PathVariable("id") Integer id){
+        // return userRepository.findById(id);
+        Optional<User> user = userRepository.findById( id );
+        if( !user.isPresent() ){
+            // throw new UserNotFoundException("id-" + id);
+            // throw new Exception("Id not found");
+        }
 
-    //     // return user.get();
+        return user.get();
         
-    //     // return userRepository.findById( Integer.parseInt(id) );
-    // }
+        // return userRepository.findById( Integer.parseInt(id) );
+    }
 
     @RequestMapping("/user/update")
     public String updateUser(@RequestParam Integer id, @RequestParam String name){
