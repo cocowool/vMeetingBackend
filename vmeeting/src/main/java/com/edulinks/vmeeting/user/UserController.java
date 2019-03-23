@@ -28,17 +28,25 @@ public class UserController {
         userRepository.save(user);
 
         return user;
-        // User n = new User();
-        // n.setName(name);
-        // userRepository.save(n);
-
-        // return "ok";
     }
 
     @RequestMapping("/user")
     public @ResponseBody Iterable<User> getAllUsers(){
         return userRepository.findAll();
     }
+
+    // @GetMapping("/user/{id}")
+    // public @ResponseBody User getSingleUser(@PathVariable("id") Integer id){
+    //     // return userRepository.findById(id);
+    //     // Optional<User> user = userRepository.findById( id );
+    //     // if( !user.isPresent() ){
+    //     //     throw new UserNotFoundException("id-" + id);
+    //     // }
+
+    //     // return user.get();
+        
+    //     // return userRepository.findById( Integer.parseInt(id) );
+    // }
 
     @RequestMapping("/user/update")
     public String updateUser(@RequestParam Integer id, @RequestParam String name){
