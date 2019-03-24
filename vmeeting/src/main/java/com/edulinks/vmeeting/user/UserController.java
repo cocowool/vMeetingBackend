@@ -2,6 +2,7 @@ package com.edulinks.vmeeting.user;
 
 import com.edulinks.vmeeting.user.User;
 import com.edulinks.vmeeting.user.UserRepository;
+import com.edulinks.vmeeting.user.UserNotFoundException;
 
 import java.net.URI;
 import java.util.List;
@@ -48,13 +49,10 @@ public class UserController {
         // return userRepository.findById(id);
         Optional<User> user = userRepository.findById( id );
         if( !user.isPresent() ){
-            // throw new UserNotFoundException("id-" + id);
-            // throw new Exception("Id not found");
+            throw new UserNotFoundException("id-" + id);
         }
 
-        return user.get();
-        
-        // return userRepository.findById( Integer.parseInt(id) );
+        return user.get();        
     }
 
     @PutMapping("/user/{id}")
