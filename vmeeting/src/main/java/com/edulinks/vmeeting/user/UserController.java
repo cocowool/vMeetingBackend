@@ -30,6 +30,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    // Post请求，新增用户
     @PostMapping("/user/add")
     public @ResponseBody User addNewUser(@RequestBody User user ) {
         userRepository.save(user);
