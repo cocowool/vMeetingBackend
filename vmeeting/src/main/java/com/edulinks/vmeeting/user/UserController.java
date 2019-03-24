@@ -60,25 +60,15 @@ public class UserController {
         Optional<User> userOptional = userRepository.findById(id);
 
         if( !userOptional.isPresent() ){
-            return ResponseEntity.notFound().build();
+            throw new UserNotFoundException("id-" + id);
+            // return ResponseEntity.notFound().build();
         }
 
         user.setId(id);
+        //@TODO 判断上送了哪些字段并进行更新
         userRepository.save(user);
 
         return ResponseEntity.noContent().build();
-    }
-
-
-    @RequestMapping("/user/update")
-    public String updateUser(@RequestParam Integer id, @RequestParam String name){
-        User n = new User();
-        n.setId(id);
-        n.setName(name);
-
-        userRepository.save(n);
-
-        return "updated";
     }
 
     @RequestMapping(value="/user/delete/{id}", method=RequestMethod.GET)
@@ -88,12 +78,9 @@ public class UserController {
             userRepository.deleteById(Integer.parseInt(id));
             return "deleted";
         }else{
-            return "error";
+            throw new UserNotFoundException("id-" + id);
+            // return "error";
         }
     }
     
-    @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable("id") Integer id){
-        userRepository.deleteById(id);
-    }
 }
