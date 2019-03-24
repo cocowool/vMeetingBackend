@@ -1,9 +1,12 @@
-package com.edulinks.vmeeting.repository;
+package com.edulinks.vmeeting.meeting;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+// import org.springframework.data.repository.CrudRepository;
 
-import com.edulinks.vmeeting.bean.Meeting;;
+import com.edulinks.vmeeting.meeting.Meeting;;
 
-public interface MeetingRepository extends CrudRepository<Meeting, Integer> {
+@Repository
+public interface MeetingRepository extends JpaRepository<Meeting, Integer> {
     
 }

@@ -1,4 +1,4 @@
-package com.edulinks.vmeeting.bean;
+package com.edulinks.vmeeting.meeting;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
