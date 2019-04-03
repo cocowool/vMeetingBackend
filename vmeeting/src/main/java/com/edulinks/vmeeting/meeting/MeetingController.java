@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
 @RestController
@@ -35,16 +37,22 @@ public class MeetingController implements Watcher {
     private static final int SESSION_TIMEOUT = 1000; // 回话超时时间
     private static CountDownLatch latch = new CountDownLatch(1);
     private ZooKeeper zk;
+    private static final String REGISTRY_PATH = "/registry";
 
     @Autowired
     private MeetingRepository meetingRepository;
 
     // ZK测试
     @RequestMapping("/zk")
-    public String testZk() {
+    public String testZk() throws InterruptedException {
 
         try {
-            ZooKeeper zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this);
+            zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this);
+            latch.await();
+
+            if(zk.exists(REGISTRY_PATH, false) == null){
+                zk.create(REGISTRY_PATH, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT)
+            }
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
