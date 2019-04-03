@@ -11,6 +11,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,22 +32,16 @@ import org.apache.zookeeper.ZooKeeper;
 
 @RestController
 public class MeetingController implements Watcher {
+    private static final int SESSION_TIMEOUT = 1000; // 回话超时时间
+    private static CountDownLatch latch = new CountDownLatch(1);
+    private ZooKeeper zk;
 
     @Autowired
     private MeetingRepository meetingRepository;
 
-    // Post请求，新增会议
-    @PostMapping("/meeting/add")
-    public @ResponseBody Meeting addNewMeeting(@RequestBody Meeting meeting) {
-        meetingRepository.save(meeting);
-
-        return meeting;
-    }
-
     // ZK测试
     @RequestMapping("/zk")
     public String testZk() {
-        final int SESSION_TIMEOUT = 1000; // 回话超时时间
 
         try {
             ZooKeeper zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this);
@@ -56,6 +52,15 @@ public class MeetingController implements Watcher {
         // ZooKeeper zk = null;
 
         return "zk test";
+    }
+
+    // Post请求，新增会议
+    @PostMapping("/meeting/add")
+    public @ResponseBody Meeting addNewMeeting(@RequestBody Meeting meeting) {
+        meetingRepository.save(meeting);
+
+
+        return meeting;
     }
 
     @RequestMapping("/meeting")
