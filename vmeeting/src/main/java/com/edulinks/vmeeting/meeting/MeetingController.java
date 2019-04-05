@@ -56,10 +56,14 @@ public class MeetingController implements Watcher {
 
         try {
             zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this.wh);
-            latch.await();
+            // latch.await();
 
             if(zk.exists(REGISTRY_PATH, false) == null){
-                zk.create(REGISTRY_PATH, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                zk.create(REGISTRY_PATH, "hello registry".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+
+                System.out.println(new String(zk.getData(REGISTRY_PATH, false, null)));
+            }else{
+                zk.setData(REGISTRY_PATH, "hello zk".getBytes(), 0);
 
                 System.out.println(new String(zk.getData(REGISTRY_PATH, false, null)));
             }
