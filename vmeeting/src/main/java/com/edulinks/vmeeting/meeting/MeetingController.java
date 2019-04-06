@@ -64,6 +64,7 @@ public class MeetingController implements Watcher {
                 System.out.println(new String(zk.getData(REGISTRY_PATH, false, null)));
             }else{
                 zk.setData(REGISTRY_PATH, "hello zk".getBytes(), 0);
+                zk.close();
 
                 System.out.println(new String(zk.getData(REGISTRY_PATH, false, null)));
             }
