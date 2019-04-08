@@ -49,10 +49,17 @@ public class MeetingController implements Watcher {
 
         try {
             zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this);
-            latch.await();
+            // latch.await();
 
             if(zk.exists(REGISTRY_PATH, false) == null){
-                zk.create(REGISTRY_PATH, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                String servicePath = REGISTRY_PATH + "/" + "zktest";
+                zk.create(servicePath, '1111', ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                
+
+                String addPath = servicePath + "/add";
+                String addNode = zk.create(addPath, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+
+
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block

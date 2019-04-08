@@ -2,7 +2,7 @@ spring:
   jpa:
     hibernate:
       # create\none
-      ddl-auto: none  
+      ddl-auto: create  
       # useSSL: false
     show-sql: true
   datasource:
