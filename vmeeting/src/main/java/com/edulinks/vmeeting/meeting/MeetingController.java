@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -43,23 +44,29 @@ public class MeetingController implements Watcher {
     @Autowired
     private MeetingRepository meetingRepository;
 
+    Watcher wh = new Watcher(){
+        public void process(org.apache.zookeeper.WatchedEvent event){
+            System.out.println(event.toString());
+        }
+    };
+
     // ZK测试
     @RequestMapping("/zk")
     public String testZk() throws InterruptedException, KeeperException {
 
         try {
-            zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this);
+            zk = new ZooKeeper("localhost:2181", SESSION_TIMEOUT, this.wh);
             // latch.await();
 
             if(zk.exists(REGISTRY_PATH, false) == null){
-                String servicePath = REGISTRY_PATH + "/" + "zktest";
-                zk.create(servicePath, '1111', ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-                
+                zk.create(REGISTRY_PATH, "hello registry".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 
-                String addPath = servicePath + "/add";
-                String addNode = zk.create(addPath, null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                System.out.println(new String(zk.getData(REGISTRY_PATH, false, null)));
+            }else{
+                zk.setData(REGISTRY_PATH, "hello zk".getBytes(), 0);
+                zk.close();
 
-
+                System.out.println(new String(zk.getData(REGISTRY_PATH, false, null)));
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
