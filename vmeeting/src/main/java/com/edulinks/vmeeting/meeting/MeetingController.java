@@ -52,6 +52,12 @@ public class MeetingController implements Watcher {
         }
     };
 
+    // ES rest client test
+    @RequestMapping("/es")
+    public String testEs(){
+        return "Es Test";
+    }
+
     // ZK测试
     @RequestMapping("/zk")
     public String testZk() throws InterruptedException, KeeperException {
