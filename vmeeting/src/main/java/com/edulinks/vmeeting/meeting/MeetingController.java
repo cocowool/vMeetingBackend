@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.apache.zookeeper.CreateMode;
@@ -43,6 +44,7 @@ public class MeetingController implements Watcher {
 
     @Autowired
     private MeetingRepository meetingRepository;
+    private RestTemplate restTemplate;
 
     Watcher wh = new Watcher(){
         public void process(org.apache.zookeeper.WatchedEvent event){
@@ -91,12 +93,18 @@ public class MeetingController implements Watcher {
         return meetingRepository.findAll();
     }
 
+    // 测试URI超长的报错提示
+    @GetMapping("/meeting/longurl")
+    public String getLongUrl(){
+        return this.restTemplate.getForObject("http://localhost:8080/meeting");
+    }
+
     @GetMapping("/meeting/{id}")
     public Meeting getSingleMeeting(@PathVariable("id") Integer id) {
         // return userRepository.findById(id);
         Optional<Meeting> meeting = meetingRepository.findById(id);
         if (!meeting.isPresent()) {
-            throw new MeetingNotFoundException("id-" + id);
+            throw  new MeetingNotFoundException("id-" + id);
         }
 
         return meeting.get();
