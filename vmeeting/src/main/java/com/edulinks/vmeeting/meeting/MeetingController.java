@@ -4,6 +4,8 @@ import com.edulinks.vmeeting.meeting.*;
 import com.edulinks.vmeeting.user.User;
 import com.edulinks.vmeeting.user.UserRepository;
 
+import static org.junit.Assume.assumeNoException;
+
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
@@ -102,8 +104,29 @@ public class MeetingController implements Watcher {
     // 测试URI超长的报错提示
     @GetMapping("/meeting/longurl")
     public String getLongUrl(){
+        String result = "";
+        RestTemplate restTemplate = new RestTemplate();
 
-        String result = this.restTemplate.getForEntity("http://localhost:8080/meeting", Meeting.class).toString();
+        // System.out.println(restTemplate.toString());
+
+        // try{
+            // result = 
+            int i = 0;
+            String url = "http://www.baidu.com/";
+
+            for(;i<50000;i++){
+                // url += (char)(Math.floorMod(i,24));
+                url += "a";
+            }
+
+            System.out.println(url);            
+            System.out.println(url.length());
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);            
+
+            result = response.getBody();
+        // }catch(Exception e){
+        //     System.out.println(e.toString());
+        // }
 
         return result;
     }
