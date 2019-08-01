@@ -102,7 +102,8 @@ public class MeetingController implements Watcher {
     // 测试URI超长的报错提示
     @GetMapping("/meeting/longurl")
     public String getLongUrl(){
-        String result = this.restTemplate.getForEntity("http://localhost:8080/meeting", String.class).toString();
+
+        String result = this.restTemplate.getForEntity("http://localhost:8080/meeting", Meeting.class).toString();
 
         return result;
     }
