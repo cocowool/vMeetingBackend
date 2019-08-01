@@ -12,6 +12,8 @@ spring:
 server:
   port: 8080
   address: 127.0.0.1
+  tomcat:
+    max-http-header-size: 500000000
 management:
   endpoints:
     web:

@@ -114,10 +114,12 @@ public class MeetingController implements Watcher {
             int i = 0;
             String url = "http://www.baidu.com/";
 
-            for(;i<50000;i++){
+            for(;i<8191;i++){
                 // url += (char)(Math.floorMod(i,24));
                 url += "a";
             }
+
+            //414 error happens after url string length more than 8212
 
             System.out.println(url);            
             System.out.println(url.length());
